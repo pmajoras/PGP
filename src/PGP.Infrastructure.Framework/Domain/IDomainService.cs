@@ -7,28 +7,35 @@ using System.Collections.Generic;
 namespace PGP.Infrastructure.Framework.Domain
 {
     /// <summary>
-    /// Define a interface básica de um serviço de domínio.
+    /// 
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public interface IDomainService<TEntity> where TEntity : DomainEntityBase, IAggregateRoot
     {
         /// <summary>
-        /// Obtém a entidade pelo id informado.
+        /// Gets the by identifier.
         /// </summary>
-        /// <param name="id">O id da entidade desejada.</param>
-        /// <returns>A instância da entidade.</returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         TEntity GetById(int id);
 
         /// <summary>
-        /// Remove a entidade com o id informado.
+        /// Gets all the entities with the given filter.
         /// </summary>
-        /// <param name="id">O id da entidade a ser removida.</param>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns></returns>
+        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null);
+
+        /// <summary>
+        /// Removes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         void Remove(int id);
 
         /// <summary>
-        /// Salva a entidade informada
+        /// Saves the specified entity.
         /// </summary>
-        /// <param name="entity">A entidade a ser salva.</param>
+        /// <param name="entity">The entity.</param>
         void Save(TEntity entity);
 
         /// <summary>
@@ -41,5 +48,10 @@ namespace PGP.Infrastructure.Framework.Domain
         /// Commit the pending changes and roolback in case of error
         /// </summary>
         void Commit();
+
+        /// <summary>
+        /// Counts All the entities.
+        /// </summary>
+        long Count();
     }
 }

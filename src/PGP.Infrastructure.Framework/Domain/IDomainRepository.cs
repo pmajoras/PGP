@@ -13,19 +13,19 @@ namespace PGP.Infrastructure.Framework.Domain
     public interface IDomainRepository<TEntity> : IRepository<TEntity> where TEntity : IAggregateRoot
     {
         /// <summary>
-        /// Busca todas as instâncias da entidade.
+        /// Finds all entities.
         /// </summary>
-        /// <param name="offset">O início do retorno.</param>
-        /// <param name="limit">A quantidade máxima de instâncias.</param>
-        /// <param name="filter">O filtro.</param>
-        /// <param name="order">A função de ordenação.</param>
-        /// <returns>O resultado da busca.</returns>
+        /// <param name="offset">The offset.</param>
+        /// <param name="limit">The limit.</param>
+        /// <param name="filter">The filter.</param>
+        /// <param name="order">The order.</param>
+        /// <returns></returns>
         IEnumerable<TEntity> FindAll(int offset, int limit, Expression<Func<TEntity, bool>> filter, Func<IEnumerable<TEntity>, IEnumerable<TEntity>> order);
 
         /// <summary>
-        /// Get all the entities with the given filter
+        /// Finds all the entities with the given filter.
         /// </summary>
-        /// <param name="filter">The filter, if is null will return all the entities</param>
+        /// <param name="filter">The filter.</param>
         /// <returns></returns>
         IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> filter = null);
     }

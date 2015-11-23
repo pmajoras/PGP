@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6C43732C-DC6A-4015-BD75-3983F7EFEBBC}</ProjectGuid>
+    <ProjectGuid>{A119F509-E066-4412-B9F5-A271EB35D511}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PGP.Infrastructure.Framework.UnitTests</RootNamespace>
-    <AssemblyName>PGP.Infrastructure.Framework.UnitTests</AssemblyName>
+    <RootNamespace>PGP.Infrastructure.Framework1.Tests</RootNamespace>
+    <AssemblyName>PGP.Infrastructure.Framework1.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,6 +16,8 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,7 +37,62 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ExtendedReflection, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Pex\Microsoft.ExtendedReflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Pex.Framework">
+      <HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Pex\Microsoft.Pex.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PGP.Infrastructure.Framework\PGP.Infrastructure.Framework.csproj">
+      <Project>{38A7C411-A8F2-46AC-8E75-D9CE45C8706D}</Project>
+      <Name>PGP.Infrastructure.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Factories\MemoryDomainContextFactory.cs" />
+    <Compile Include="MemoryDomainContextTest.AttachTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.BeginTransactionTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.ClearContextTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.CommitTransactionTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.ConstructorTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.CreateQueryTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.cs" />
+    <Compile Include="MemoryDomainContextTest.DisposeTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.RegisterChangedTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.RegisterDeletedTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.RegisterNewTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.RoolbackTransactionTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryDomainContextTest.SaveContextChangesTest.g.cs">
+      <DependentUpon>MemoryDomainContextTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\PexAssemblyInfo.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -49,9 +106,6 @@
       </ItemGroup>
     </Otherwise>
   </Choose>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

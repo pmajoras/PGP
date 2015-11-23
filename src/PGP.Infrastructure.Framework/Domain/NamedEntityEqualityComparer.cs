@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
 {
     /// <summary>
-    /// Comparador para INamedEntity.
+    /// 
     /// </summary>
     public class NamedEntityEqualityComparer : IEqualityComparer<INamedEntity>
     {

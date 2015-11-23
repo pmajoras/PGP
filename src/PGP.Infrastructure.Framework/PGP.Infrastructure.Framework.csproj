@@ -60,6 +60,8 @@
     <Compile Include="Collections\IEnumerableExtensions.cs" />
     <Compile Include="Commons\Specs\MustComplyWithMetadataSpecification.cs" />
     <Compile Include="Constants\RegexConstants.cs" />
+    <Compile Include="DomainContext\IDomainContext.cs" />
+    <Compile Include="DomainContext\MemoryDomainContext.cs" />
     <Compile Include="Domain\DomainEntityBase.cs" />
     <Compile Include="Domain\DomainServiceBase.cs" />
     <Compile Include="Domain\DomainServiceExtensions.cs" />
@@ -74,18 +76,13 @@
     <Compile Include="Enumerators\EnumExtensions.cs" />
     <Compile Include="Globalization\CultureInfoHelper.cs" />
     <Compile Include="Globalization\GlobalizationHelper.cs" />
-    <Compile Include="Globalization\AppMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppMessages.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Globalization\AppMessages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Compile Include="Repositories\EntityBase.cs" />
+    <Compile Include="Repositories\IDomainService.cs" />
+    <Compile Include="Repositories\IEntity.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IUnitOfWork.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -93,6 +90,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

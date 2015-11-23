@@ -7,6 +7,8 @@ using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
 using System.Collections.Generic;
 using PGP.Infrastructure.Framework.Commons.Specs;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace PGP.Infrastructure.Framework.Domain
 {
@@ -20,11 +22,12 @@ namespace PGP.Infrastructure.Framework.Domain
         where TMainRepository : IRepository<TEntity>
     {
         #region Constructors
+
         /// <summary>
-        /// Inicia uma nova instância da classe <see cref="DomainServiceBase{TEntity, TMainRepository}"/>.
+        /// Initializes a new instance of the <see cref="DomainServiceBase{TEntity, TMainRepository}"/> class.
         /// </summary>
-        /// <param name="repository">O repositório.</param>
-        /// <param name="unitOfWork">O unit of work.</param>
+        /// <param name="repository">The repository.</param>
+        /// <param name="unitOfWork">The unit of work.</param>
         protected DomainServiceBase(TMainRepository repository, IUnitOfWork unitOfWork)
             : base(repository, unitOfWork)
         {
@@ -34,9 +37,9 @@ namespace PGP.Infrastructure.Framework.Domain
         #region Methods
 
         /// <summary>
-        /// Get an entity by id
+        /// Gets the by identifier.
         /// </summary>
-        /// <param name="id">The entity id</param>
+        /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public TEntity GetById(int id)
         {
@@ -44,10 +47,30 @@ namespace PGP.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Salva a entidade informada
+        /// Gets all the entities with the given filter.
         /// </summary>
-        /// <param name="entity">A entidade a ser salva.</param>
-        [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
+        /// <param name="predicate">The predicate.</param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            IEnumerable<TEntity> entitiesToReturn = null;
+
+            if (predicate != null)
+            {
+                entitiesToReturn = MainRepository.FindAll(predicate);
+            }
+            else
+            {
+                entitiesToReturn = MainRepository.FindAll();
+            }
+
+            return entitiesToReturn;
+        }
+
+        /// <summary>
+        /// Saves the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
         public virtual void Save(TEntity entity)
         {
             ExceptionHelper.ThrowIfNull("entity", entity);
@@ -60,9 +83,9 @@ namespace PGP.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Salva uma lista de entidades
+        /// Saves a list of entities
         /// </summary>
-        /// <param name="entityList">A entidade a ser salva.</param>
+        /// <param name="entityList">The list of entities to save</param>
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         public virtual void SaveEntityList(IEnumerable<TEntity> entityList)
         {
@@ -79,9 +102,9 @@ namespace PGP.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Remove a entidade com o id informado.
+        /// Removes the specified identifier.
         /// </summary>
-        /// <param name="id">O id da entidade a ser removida.</param>
+        /// <param name="id">The identifier.</param>
         public virtual void Remove(int id)
         {
             var entity = MainRepository.FindBy(id);
@@ -93,6 +116,15 @@ namespace PGP.Infrastructure.Framework.Domain
             SpecService.Assert(entity, GetRemoveSpecifications(entity));
 
             MainRepository.Remove(entity);
+        }
+
+        /// <summary>
+        /// Counts All the entities.
+        /// </summary>
+        /// <returns></returns>
+        public long Count()
+        {
+            return MainRepository.CountAll();
         }
 
         /// <summary>
@@ -116,10 +148,10 @@ namespace PGP.Infrastructure.Framework.Domain
         #region Protected Methods
 
         /// <summary>
-        /// Obtém as especificações que devem ser atentidas ao salvar a entidade.
+        /// Gets the save specifications.
         /// </summary>
-        /// <param name="entity">A entidade.</param>
-        /// <returns>As especificações.</returns>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         protected virtual ISpecification<TEntity>[] GetSaveSpecifications(TEntity entity)
         {
             return new ISpecification<TEntity>[]
@@ -129,15 +161,14 @@ namespace PGP.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Obtém as especificações que devem ser atentidas ao remover a entidade.
+        /// Gets the remove specifications.
         /// </summary>
-        /// <param name="entity">A entidade.</param>
-        /// <returns>As especificações.</returns>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         protected virtual ISpecification<TEntity>[] GetRemoveSpecifications(TEntity entity)
         {
             return new ISpecification<TEntity>[0];
         }
-
 
         #endregion
     }

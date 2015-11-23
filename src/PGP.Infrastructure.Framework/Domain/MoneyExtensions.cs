@@ -10,12 +10,12 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
     public static class MoneyExtensions
     {
         /// <summary>
-        /// Realiza a soma dos Money projetados.
+        /// Sums the specified selector.
         /// </summary>
-        /// <typeparam name="TSource">O tipo da lista.</typeparam>
-        /// <param name="source">A lista.</param>
-        /// <param name="selector">O seletor do tipo Money.</param>
-        /// <returns>O Money com o valor somado.</returns>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
         public static Money Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, Money> selector)
         {
             if (source.Count() == 0)
@@ -29,12 +29,12 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Realiza a méida dos Money projetados.
+        /// Averages the specified selector.
         /// </summary>
-        /// <typeparam name="TSource">O tipo da lista.</typeparam>
-        /// <param name="source">A lista.</param>
-        /// <param name="selector">O seletor do tipo Money.</param>
-        /// <returns>O Money com o valor médio.</returns>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
         public static Money Average<TSource>(this IEnumerable<TSource> source, Func<TSource, Money> selector)
         {
             if (source.Count() == 0)

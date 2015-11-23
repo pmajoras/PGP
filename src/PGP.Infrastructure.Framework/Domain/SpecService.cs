@@ -9,15 +9,14 @@ using HelperSharp;
 namespace PGP.Infrastructure.Framework.Domain
 {
     /// <summary>
-    /// Utilitários para especificações.
+    /// 
     /// </summary>
     public static class SpecService
     {
-        #region Constructors
+        #region Constructors     
         /// <summary>
-        /// Inicia os membros estáticos da classe <see cref="SpecService"/>.
+        /// Initializes the <see cref="SpecService"/> class.
         /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
         static SpecService()
         {
             KissSpecificationsConfig.GlobalizationResolver = new FuncGlobalizationResolver((text) =>
@@ -61,11 +60,11 @@ namespace PGP.Infrastructure.Framework.Domain
         #endregion
 
         /// <summary>
-        /// Verifica se todas as especificações são satisfeitas. Se uma única não for, será lançada um SpecificationNotSatisfiedException.
+        /// Asserts the specified target.
         /// </summary>
-        /// <typeparam name="TTarget">O tipo do alvo da especificações.</typeparam>
-        /// <param name="target">O alvo da especificações.</param>
-        /// <param name="specifications">As especificações.</param>
+        /// <typeparam name="TTarget">The type of the target.</typeparam>
+        /// <param name="target">The target.</param>
+        /// <param name="specifications">The specifications.</param>
         public static void Assert<TTarget>(TTarget target, params ISpecification<TTarget>[] specifications)
         {
             var notSatisfiedSpecifications = SpecificationService.FilterSpecificationsAreNotSatisfiedBy(target, specifications);
@@ -73,11 +72,11 @@ namespace PGP.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Verifica se todas as especificações são satisfeitas. Se uma única não for, será lançada um SpecificationNotSatisfiedException.
+        /// Asserts the specified targets.
         /// </summary>
-        /// <typeparam name="TTarget">O tipo do alvo da especificações.</typeparam>
-        /// <param name="targets">Os alvos das especificações.</param>
-        /// <param name="specifications">As especificações.</param>
+        /// <typeparam name="TTarget">The type of the target.</typeparam>
+        /// <param name="targets">The targets.</param>
+        /// <param name="specifications">The specifications.</param>
         public static void Assert<TTarget>(IEnumerable<TTarget> targets, params ISpecification<TTarget>[] specifications)
         {
             var notSatisfiedSpecifications = SpecificationService.FilterSpecificationsAreNotSatisfiedBy(targets, specifications);
@@ -85,11 +84,11 @@ namespace PGP.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Verifica se todas as especificações dos grupos informados são satisfeitas. Se uma única não for, será lançada um SpecificationNotSatisfiedException.
+        /// Asserts the groups.
         /// </summary>
-        /// <typeparam name="TTarget">O tipo do alvo da especificações.</typeparam>
-        /// <param name="target">O alvo da especificações.</param>
-        /// <param name="groupKeys">As chaves dos grupos de especificações.</param>
+        /// <typeparam name="TTarget">The type of the target.</typeparam>
+        /// <param name="target">The target.</param>
+        /// <param name="groupKeys">The group keys.</param>
         public static void AssertGroups<TTarget>(TTarget target, params object[] groupKeys)
         {
             var notSatisfiedSpecifications = SpecificationService.FilterSpecificationsAreNotSatisfiedBy(target, groupKeys);

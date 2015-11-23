@@ -6,17 +6,17 @@ using PGP.Infrastructure.Framework.Globalization;
 namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
 {
     /// <summary>
-    /// Representa um valor monetário.
-    /// </summary>    
+    /// 
+    /// </summary>
     public class Money
     {
         #region Fields
         private CultureInfo m_cultureInfo;
         #endregion
 
-        #region Constructors
+        #region Constructors        
         /// <summary>
-        /// Inicia uma nova instância da classe <see cref="Money"/>.
+        /// Initializes a new instance of the <see cref="Money"/> class.
         /// </summary>
         public Money()
             : this(0, "R$")
@@ -24,19 +24,19 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Inicia uma nova instância da classe <see cref="Money" />.
+        /// Initializes a new instance of the <see cref="Money"/> class.
         /// </summary>
-        /// <param name="amount">A quantia.</param>
+        /// <param name="amount">The amount.</param>
         public Money(decimal amount)
             : this(amount, "R$")
         {
         }
 
         /// <summary>
-        /// Inicia uma nova instância da classe <see cref="Money"/>.
+        /// Initializes a new instance of the <see cref="Money"/> class.
         /// </summary>
-        /// <param name="amount">A quantia.</param>
-        /// <param name="currency">A moeda.</param>
+        /// <param name="amount">The amount.</param>
+        /// <param name="currency">The currency.</param>
         public Money(decimal amount, string currency)
         {
             Amount = amount;
@@ -44,17 +44,30 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
         #endregion
 
-        #region Properties
+        #region Properties 
+
         /// <summary>
-        /// Obtém ou define a quantidade.
+        /// Gets or sets the amount.
         /// </summary>
+        /// <value>
+        /// The amount.
+        /// </value>
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// Obtém ou define a moeda.
+        /// Gets or sets the currency.
         /// </summary>
+        /// <value>
+        /// The currency.
+        /// </value>
         public string Currency { get; set; }
 
+        /// <summary>
+        /// Gets the culture information.
+        /// </summary>
+        /// <value>
+        /// The culture information.
+        /// </value>
         private CultureInfo CultureInfo
         {
             get
@@ -72,11 +85,13 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         #region Operators
 
         /// <summary>
-        /// Soma dois valores da mesma moeda.
+        /// Implements the operator +.
         /// </summary>
-        /// <param name="left">Primeiro valor.</param>
-        /// <param name="right">Segundo valor.</param>
-        /// <returns>A soma dos valores, na mesma moeda.</returns>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static Money operator +(Money left, Money right)
         {
             ExceptionHelper.ThrowIfNull("left", left);
@@ -88,11 +103,13 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Subtrai um valor de outro da mesma moeda.
+        /// Implements the operator -.
         /// </summary>
-        /// <param name="left">Primeiro valor.</param>
-        /// <param name="right">Segundo valor.</param>
-        /// <returns>O resultado da subtração dos valores, na mesma moeda.</returns>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static Money operator -(Money left, Money right)
         {
             ExceptionHelper.ThrowIfNull("left", left);
@@ -104,11 +121,13 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Multiplica um valor de moeda.
+        /// Implements the operator *.
         /// </summary>
-        /// <param name="left">O valor.</param>
-        /// <param name="right">O multiplicador.</param>
-        /// <returns>O valor multiplicado, na mesma moeda.</returns>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static Money operator *(Money left, int right)
         {
             ExceptionHelper.ThrowIfNull("left", left);
@@ -117,11 +136,13 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Multiplica um valor de moeda.
+        /// Implements the operator *.
         /// </summary>
-        /// <param name="left">O valor.</param>
-        /// <param name="right">O multiplicador.</param>
-        /// <returns>O valor multiplicado, na mesma moeda.</returns>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static Money operator *(Money left, decimal right)
         {
             ExceptionHelper.ThrowIfNull("left", left);
@@ -130,11 +151,13 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Dividi um valor de moeda.
+        /// Implements the operator /.
         /// </summary>
-        /// <param name="left">O valor.</param>
-        /// <param name="right">O divisor.</param>
-        /// <returns>O valor dividido, na mesma moeda.</returns>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static Money operator /(Money left, decimal right)
         {
             ExceptionHelper.ThrowIfNull("left", left);
@@ -143,11 +166,13 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Compara duas instâncias de Money.
+        /// Implements the operator ==.
         /// </summary>
-        /// <param name="left">O primeiro valor.</param>
-        /// <param name="right">O segundo valor.</param>
-        /// <returns>True caso os valores sejam iguais, False caso contrário.</returns>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static bool operator ==(Money left, Money right)
         {
             if (ReferenceEquals(left, right))
@@ -164,11 +189,13 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Compara duas instâncias de Money.
+        /// Implements the operator !=.
         /// </summary>
-        /// <param name="left">O primeiro valor.</param>
-        /// <param name="right">O segundo valor.</param>
-        /// <returns>True caso os valores sejam diferentes, False caso contrário.</returns>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
         public static bool operator !=(Money left, Money right)
         {
             if (ReferenceEquals(left, right))
@@ -189,31 +216,31 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         #region Methods
 
         /// <summary>
-        /// Cria uma instância de Money utilizando a moeda Reais (R$).
+        /// Reaises the specified amount.
         /// </summary>
-        /// <param name="amount">A quantidade na moeda.</param>
-        /// <returns>O dinheiro em R$.</returns>
+        /// <param name="amount">The amount.</param>
+        /// <returns></returns>
         public static Money Reais(decimal amount)
         {
             return new Money(amount, "BRL");
         }
 
         /// <summary>
-        /// Cria uma instância de Money utilizando a moeda Dólares (US$).
+        /// Uses the dollars.
         /// </summary>
-        /// <param name="amount">A quantidade na moeda.</param>
-        /// <returns>O dinheiro em US$.</returns>
+        /// <param name="amount">The amount.</param>
+        /// <returns></returns>
         public static Money USDollars(decimal amount)
         {
             return new Money(amount, "USD");
         }
 
         /// <summary>
-        /// Cria uma instância de Money utilizando a mesma moeda que outra instância.
+        /// Sames the currency.
         /// </summary>
-        /// <param name="money">Money contendo a moeda a ser mantida.</param>
-        /// <param name="amount">A quantidade na moeda.</param>
-        /// <returns>O dinheiro na mesma moeda informada.</returns>
+        /// <param name="money">The money.</param>
+        /// <param name="amount">The amount.</param>
+        /// <returns></returns>
         public static Money SameCurrency(Money money, decimal amount)
         {
             return new Money(amount, money.Currency);
@@ -231,10 +258,12 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Determina se a instância informada é igual a esta instância.
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
         /// </summary>
-        /// <param name="obj">A instância a comparar com esta instância.</param>
-        /// <returns>True caso ambas instâncias sejam iguais, False caso contrário.</returns>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             Money money = obj as Money;
@@ -247,69 +276,77 @@ namespace GoImage.PortalFotografico.Infrastructure.Framework.Domain
         }
 
         /// <summary>
-        /// Retorna um hash code para esta instância.
+        /// Returns a hash code for this instance.
         /// </summary>
-        /// <returns>Um hash code.</returns>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
         }
 
         /// <summary>
-        /// Soma dois valores da mesma moeda.
+        /// Adds the specified right.
         /// </summary>
-        /// <param name="right">Segundo valor.</param>
-        /// <returns>A soma dos valores, na mesma moeda.</returns>
+        /// <param name="right">The right.</param>
+        /// <returns></returns>
         public Money Add(Money right)
         {
             return this + right;
         }
 
         /// <summary>
-        /// Subtrai um valor de outro da mesma moeda.
+        /// Subtracts the specified right.
         /// </summary>
-        /// <param name="right">Segundo valor.</param>
-        /// <returns>O resultado da subtração dos valores, na mesma moeda.</returns>
+        /// <param name="right">The right.</param>
+        /// <returns></returns>
         public Money Subtract(Money right)
         {
             return this - right;
         }
 
         /// <summary>
-        /// Multiplica um valor de moeda.
+        /// Multiplies the specified multiplier.
         /// </summary>
-        /// <param name="multiplier">O multiplicador.</param>
-        /// <returns>O valor multiplicado, na mesma moeda.</returns>
+        /// <param name="multiplier">The multiplier.</param>
+        /// <returns></returns>
         public Money Multiply(int multiplier)
         {
             return this * multiplier;
         }
 
         /// <summary>
-        /// Multiplica um valor de moeda.
+        /// Multiplies the specified multiplier.
         /// </summary>
-        /// <param name="multiplier">O multiplicador.</param>
-        /// <returns>O valor multiplicado, na mesma moeda.</returns>
+        /// <param name="multiplier">The multiplier.</param>
+        /// <returns></returns>
         public Money Multiply(decimal multiplier)
         {
             return this * multiplier;
         }
 
         /// <summary>
-        /// Divide um valor de moeda.
+        /// Divides the specified divider.
         /// </summary>
-        /// <param name="divider">O divisor.</param>
-        /// <returns>O valor dividido, na mesma moeda.</returns>
+        /// <param name="divider">The divider.</param>
+        /// <returns></returns>
         public Money Divide(decimal divider)
         {
             return this / divider;
         }
 
+        /// <summary>
+        /// Ensures the same currency.
+        /// </summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <exception cref="System.InvalidOperationException"></exception>
         private static void EnsureSameCurrency(Money left, Money right)
         {
             if (left.Currency != right.Currency)
             {
-                throw new InvalidOperationException(AppMessages.InvalidMoneyOperationDifferentCurrencies);
+                throw new InvalidOperationException("InvalidMoneyOperationDifferentCurrencies");
             }
         }
 
