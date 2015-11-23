@@ -1,12 +1,11 @@
-﻿using PGP.Infrastructure.Framework.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PGP.Infrastructure.Framework.DomainContext
+namespace PGP.Infrastructure.Framework.Repositories
 {
     /// <summary>
     /// The Interface that indicates that the object is a <see cref=">IDomainContext"/>

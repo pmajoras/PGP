@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9B1E30FE-8E44-4782-A482-F4AE32910693}</ProjectGuid>
+    <ProjectGuid>{BDED95B0-86B7-4E3E-AF3B-CB0E5CC2E8CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PGP.Infrastructure.Framework.Tests</RootNamespace>
@@ -35,14 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HelperSharp, Version=1.0.5560.27038, Culture=neutral, PublicKeyToken=3d44152485e1a4e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\HelperSharp.0.0.4.2\lib\net35\HelperSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -53,25 +45,13 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DomainContext\MemoryDomainContextTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PGP.Infrastrucutre.Framework.Repositories\PGP.Infrastrucutre.Framework.Repositories.csproj">
-      <Project>{c4bbafad-0381-444c-84e2-4bdcc6ce3f1e}</Project>
-      <Name>PGP.Infrastrucutre.Framework.Repositories</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

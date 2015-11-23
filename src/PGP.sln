@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastructure.Framework", "PGP.Infrastructure.Framework\PGP.Infrastructure.Framework.csproj", "{38A7C411-A8F2-46AC-8E75-D9CE45C8706D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastrucutre.Framework.Repositories.Tests", "PGP.Infrastructure.Framework.Tests\PGP.Infrastrucutre.Framework.Repositories.Tests.csproj", "{9B1E30FE-8E44-4782-A482-F4AE32910693}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastrucutre.Framework.Repositories", "PGP.Infrastrucutre.Framework.Repositories\PGP.Infrastrucutre.Framework.Repositories.csproj", "{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastrucutre.Framework.Repositories.Tests", "PGP.Infrastructure.Framework.Repositories.Tests\PGP.Infrastrucutre.Framework.Repositories.Tests.csproj", "{9B1E30FE-8E44-4782-A482-F4AE32910693}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

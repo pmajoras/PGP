@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PGP.Infrastructure.Framework.DomainContext;
 using PGP.Infrastructure.Framework.Repositories;
 using Moq;
 using System.Linq.Expressions;

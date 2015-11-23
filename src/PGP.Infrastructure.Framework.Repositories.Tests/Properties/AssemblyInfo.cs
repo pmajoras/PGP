@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PGP.Infrastructure.Framework.Tests")]
+[assembly: AssemblyTitle("PGP.Infrastructure.Framework.Repositories.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PGP.Infrastructure.Framework.Tests")]
+[assembly: AssemblyProduct("PGP.Infrastructure.Framework.Repositories.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bded95b0-86b7-4e3e-af3b-cb0e5cc2e8cf")]
+[assembly: Guid("51b654b6-c82c-4b60-8e8a-99148498402c")]
 
 // Version information for an assembly consists of the following four values:
 //

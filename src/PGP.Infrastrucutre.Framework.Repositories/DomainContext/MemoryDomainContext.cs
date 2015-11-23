@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PGP.Infrastructure.Framework.Repositories;
 using HelperSharp;
 
-namespace PGP.Infrastructure.Framework.DomainContext
+namespace PGP.Infrastructure.Framework.Repositories
 {
     /// <summary>
     /// Class that represents a context that can be used for unit testing
@@ -309,7 +308,7 @@ namespace PGP.Infrastructure.Framework.DomainContext
                 }
             }
 
-            m_currentTransaction = null;
+            ClearContext();
         }
 
         /// <summary>
@@ -322,7 +321,6 @@ namespace PGP.Infrastructure.Framework.DomainContext
             m_memoryEntitiesToAdd.Clear();
             m_memoryEntitiesToChange.Clear();
             m_memoryEntitiesToRemove.Clear();
-            m_repositories.Clear();
         }
 
         /// <summary>
@@ -369,6 +367,7 @@ namespace PGP.Infrastructure.Framework.DomainContext
                 if (disposing)
                 {
                     ClearContext();
+                    m_repositories.Clear();
                 }
 
                 // Dispose unmanaged managed resources.
