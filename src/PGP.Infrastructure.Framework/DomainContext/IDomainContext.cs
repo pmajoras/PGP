@@ -21,13 +21,6 @@ namespace PGP.Infrastructure.Framework.DomainContext
         void RegisterRepository<TRepository>(IRepository<TRepository> repository) where TRepository : IEntity;
 
         /// <summary>
-        /// Removes the repository from the DomainContext.
-        /// </summary>
-        /// <typeparam name="TRepository">The type of the repository.</typeparam>
-        /// <param name="repository">The repository.</param>
-        void RemoveRepository<TRepository>(IRepository<TRepository> repository) where TRepository : IEntity;
-
-        /// <summary>
         /// Registers the entity as a new entity in the context.
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>

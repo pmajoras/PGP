@@ -84,6 +84,8 @@ namespace PGP.Infrastructure.Framework.DomainContext
         /// <exception cref="System.ArgumentException">The MemoryDomainContext already contains an repository with the type  + repositoryType.Name + .</exception>
         public void RegisterRepository<TRepository>(IRepository<TRepository> repository) where TRepository : IEntity
         {
+            ExceptionHelper.ThrowIfNull("repository", repository);
+
             var repositoryType = typeof(TRepository);
 
             if (m_repositories.Any(x => x.Key == repositoryType))
@@ -95,31 +97,13 @@ namespace PGP.Infrastructure.Framework.DomainContext
         }
 
         /// <summary>
-        /// Removes the repository from the DomainContext.
-        /// </summary>
-        /// <typeparam name="TRepository">The type of the repository.</typeparam>
-        /// <param name="repository">The repository.</param>
-        public void RemoveRepository<TRepository>(IRepository<TRepository> repository) where TRepository : IEntity
-        {
-            var repositoryType = typeof(TRepository);
-
-            if (m_repositories.Any(x => x.Key == repositoryType))
-            {
-                var repositoryKeyPair = m_repositories.First(x => x.Key == repositoryType);
-                if (repositoryKeyPair.Value == repository)
-                {
-                    m_repositories.Remove(repositoryType);
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets the entity by identifier.
         /// </summary>
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public TEntity GetById<TEntity>(object id) where TEntity : IEntity
+        public TEntity GetById<TEntity>(object id)
+            where TEntity : IEntity
         {
             var intId = 0;
             if (id is int)
@@ -129,7 +113,7 @@ namespace PGP.Infrastructure.Framework.DomainContext
 
             var query = GetSpecificListFromDictionary<TEntity>(m_memoryDatabase);
 
-            return query.Where(x => x.Id == intId).FirstOrDefault();
+            return (TEntity)query.Where(x => x.Id == intId).FirstOrDefault();
         }
 
         /// <summary>
@@ -140,10 +124,14 @@ namespace PGP.Infrastructure.Framework.DomainContext
         public IQueryable<TEntity> CreateQuery<TEntity>() where TEntity : IEntity
         {
             var query = GetSpecificListFromDictionary<TEntity>(m_memoryDatabase);
+            var returnQuery = new List<TEntity>();
 
-            query.ForEach(x => x = (TEntity)ObjectHelper.CreateShallowCopy(x));
+            foreach (var entity in query)
+            {
+                returnQuery.Add((TEntity)ObjectHelper.CreateShallowCopy(entity));
+            }
 
-            return query.AsQueryable();
+            return returnQuery.AsQueryable();
         }
 
         /// <summary>
@@ -334,6 +322,7 @@ namespace PGP.Infrastructure.Framework.DomainContext
             m_memoryEntitiesToAdd.Clear();
             m_memoryEntitiesToChange.Clear();
             m_memoryEntitiesToRemove.Clear();
+            m_repositories.Clear();
         }
 
         /// <summary>
@@ -440,11 +429,12 @@ namespace PGP.Infrastructure.Framework.DomainContext
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
         /// <returns></returns>
-        private List<TEntity> GetSpecificListFromDictionary<TEntity>(Dictionary<Type, List<IEntity>> dictionary) where TEntity : IEntity
+        private List<IEntity> GetSpecificListFromDictionary<TEntity>(Dictionary<Type, List<IEntity>> dictionary)
+            where TEntity : IEntity
         {
             ExceptionHelper.ThrowIfNull("dictionary", dictionary);
 
-            return GetSpecificListFromDictionary(typeof(TEntity), dictionary).OfType<TEntity>().ToList();
+            return GetSpecificListFromDictionary(typeof(TEntity), dictionary);
         }
 
         /// <summary>
@@ -462,7 +452,7 @@ namespace PGP.Infrastructure.Framework.DomainContext
                 dictionary.Add(listType, new List<IEntity>());
             }
 
-            return dictionary.First(x => x.Key == listType).Value;
+            return dictionary[listType];
         }
 
         /// <summary>
@@ -488,7 +478,7 @@ namespace PGP.Infrastructure.Framework.DomainContext
         {
             ExceptionHelper.ThrowIfNull("dictionary", dictionary);
 
-            return dictionary.Any(x => x.Key == listType);
+            return dictionary.ContainsKey(listType);
         }
 
         #endregion

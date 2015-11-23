@@ -12,7 +12,7 @@ namespace PGP.Infrastructure.Framework.Repositories
     /// An interface that represents that the class is a repository.
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public interface IRepository<TEntity> : IDisposable where TEntity : IEntity
+    public interface IRepository<TEntity> where TEntity : IEntity
     {
         /// <summary>
         /// Sets the repository context.

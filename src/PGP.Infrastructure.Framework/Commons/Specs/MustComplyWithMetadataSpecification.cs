@@ -38,6 +38,7 @@ namespace PGP.Infrastructure.Framework.Commons.Specs
         #endregion
 
         #region Methods
+
         /// <summary>
         /// Determines whether the target object satisfies the specification.
         /// </summary>
