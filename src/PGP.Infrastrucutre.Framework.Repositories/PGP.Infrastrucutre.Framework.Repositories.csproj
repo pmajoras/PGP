@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38A7C411-A8F2-46AC-8E75-D9CE45C8706D}</ProjectGuid>
+    <ProjectGuid>{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PGP.Infrastructure.Framework</RootNamespace>
-    <AssemblyName>PGP.Infrastructure.Framework</AssemblyName>
+    <RootNamespace>PGP.Infrastrucutre.Framework.Repositories</RootNamespace>
+    <AssemblyName>PGP.Infrastrucutre.Framework.Repositories</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,7 +39,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,24 +48,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\IEnumerableExtensions.cs" />
-    <Compile Include="Specifications\DomainSpecification.cs" />
-    <Compile Include="Specifications\Errors\DomainSpecificationError.cs" />
-    <Compile Include="Specifications\Errors\DomainSpecificationNotSatisfiedException.cs" />
-    <Compile Include="Specifications\Results\DomainSpecificationResult.cs" />
-    <Compile Include="Specifications\IDomainSpecification.cs" />
-    <Compile Include="Commons\DomainSpecifications\MustComplyWithMetadataSpecificationBase.cs" />
-    <Compile Include="Constants\RegexConstants.cs" />
-    <Compile Include="Specifications\SpecService.cs" />
-    <Compile Include="Enumerators\EnumExtensions.cs" />
-    <Compile Include="Globalization\CultureInfoHelper.cs" />
-    <Compile Include="Globalization\GlobalizationHelper.cs" />
+    <Compile Include="Entity\PGPEntity.cs" />
+    <Compile Include="Repository\PGPRepository.cs" />
+    <Compile Include="DomainContext\IDomainContext.cs" />
+    <Compile Include="DomainService\IDomainService.cs" />
+    <Compile Include="Entity\IEntity.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="DomainContext\MemoryDomainContext.cs" />
+    <Compile Include="DomainService\PGPDomainService.cs" />
+    <Compile Include="UnitOfWork\PGPUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PGP.Infrastructure.Framework\PGP.Infrastructure.Framework.csproj">
+      <Project>{38a7c411-a8f2-46ac-8e75-d9ce45c8706d}</Project>
+      <Name>PGP.Infrastructure.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

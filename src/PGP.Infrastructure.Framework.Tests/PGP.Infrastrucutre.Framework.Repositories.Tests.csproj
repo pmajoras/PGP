@@ -43,15 +43,7 @@
       <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Skahal.Infrastructure.Framework, Version=1.0.5576.19712, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skahal.Infrastructure.Framework.0.6.5\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.IO.Abstractions, Version=1.4.0.92, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.1.4.0.92\lib\net35\System.IO.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -68,26 +60,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Collections\IEnumerableExtensionsTests.cs" />
     <Compile Include="DomainContext\MemoryDomainContextTest.cs" />
-    <Compile Include="Enumerators\EnumExtensionsTest.cs" />
-    <Compile Include="Globalization\CultureInfoHelperTest.cs" />
-    <Compile Include="Globalization\GlobalizationHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PGP.Infrastructure.Framework\PGP.Infrastructure.Framework.csproj">
-      <Project>{38a7c411-a8f2-46ac-8e75-d9ce45c8706d}</Project>
-      <Name>PGP.Infrastructure.Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commons\Specs\" />
-    <Folder Include="Domain\" />
-    <Folder Include="Linq\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PGP.Infrastrucutre.Framework.Repositories\PGP.Infrastrucutre.Framework.Repositories.csproj">
+      <Project>{c4bbafad-0381-444c-84e2-4bdcc6ce3f1e}</Project>
+      <Name>PGP.Infrastrucutre.Framework.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

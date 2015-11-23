@@ -13,7 +13,7 @@ namespace PGP.Infrastructure.Framework.Repositories
     /// 
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : IEntity
+    public abstract class PGPRepository<TEntity> : IRepository<TEntity> where TEntity : IEntity
     {
         #region Private Properties
 
@@ -27,10 +27,10 @@ namespace PGP.Infrastructure.Framework.Repositories
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericRepository{TEntity}"/> class.
+        /// Initializes a new instance of the <see cref="PGPRepository{TEntity}"/> class.
         /// </summary>
         /// <param name="domainContext">The domain context.</param>
-        public GenericRepository(IDomainContext domainContext)
+        public PGPRepository(IDomainContext domainContext)
         {
             ExceptionHelper.ThrowIfNull("domainContext", domainContext);
             m_domainContext = domainContext;

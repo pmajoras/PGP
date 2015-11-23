@@ -1,8 +1,8 @@
 ﻿using HelperSharp;
 using KissSpecifications;
 using KissSpecifications.Commons;
-using PGP.Infrastructure.Framework.Commons.Specs;
-using PGP.Infrastructure.Framework.Domain;
+using PGP.Infrastructure.Framework.Commons.DomainSpecifications;
+using PGP.Infrastructure.Framework.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -175,7 +175,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         {
             return new ISpecification<TEntity>[]
             {
-                new MustComplyWithMetadataSpecification<TEntity>()
+                new MustComplyWithMetadataSpecificationBase<TEntity>()
             };
         }
 

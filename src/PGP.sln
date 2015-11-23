@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastructure.Framework", "PGP.Infrastructure.Framework\PGP.Infrastructure.Framework.csproj", "{38A7C411-A8F2-46AC-8E75-D9CE45C8706D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastructure.Framework.Tests", "PGP.Infrastructure.Framework.Tests\PGP.Infrastructure.Framework.Tests.csproj", "{9B1E30FE-8E44-4782-A482-F4AE32910693}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastrucutre.Framework.Repositories.Tests", "PGP.Infrastructure.Framework.Tests\PGP.Infrastrucutre.Framework.Repositories.Tests.csproj", "{9B1E30FE-8E44-4782-A482-F4AE32910693}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastrucutre.Framework.Repositories", "PGP.Infrastrucutre.Framework.Repositories\PGP.Infrastrucutre.Framework.Repositories.csproj", "{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{9B1E30FE-8E44-4782-A482-F4AE32910693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B1E30FE-8E44-4782-A482-F4AE32910693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B1E30FE-8E44-4782-A482-F4AE32910693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +36,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{38A7C411-A8F2-46AC-8E75-D9CE45C8706D} = {290CB9D3-CE05-48F2-BB12-310B4C1D31D3}
 		{9B1E30FE-8E44-4782-A482-F4AE32910693} = {290CB9D3-CE05-48F2-BB12-310B4C1D31D3}
+		{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E} = {290CB9D3-CE05-48F2-BB12-310B4C1D31D3}
 	EndGlobalSection
 EndGlobal

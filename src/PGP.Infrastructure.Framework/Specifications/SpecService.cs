@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using KissSpecifications;
-using KissSpecifications.Commons;
+﻿using KissSpecifications;
 using KissSpecifications.Globalization;
-using PGP.Infrastructure.Framework.Globalization;
-using HelperSharp;
+using PGP.Infrastructure.Framework.Specifications.Errors;
+using System.Linq;
 
-namespace PGP.Infrastructure.Framework.Domain
+namespace PGP.Infrastructure.Framework.Specifications
 {
     /// <summary>
     /// 
@@ -68,19 +65,12 @@ namespace PGP.Infrastructure.Framework.Domain
         public static void Assert<TTarget>(TTarget target, params ISpecification<TTarget>[] specifications)
         {
             var notSatisfiedSpecifications = SpecificationService.FilterSpecificationsAreNotSatisfiedBy(target, specifications);
-            //return error Object
-        }
 
-        /// <summary>
-        /// Asserts the specified targets.
-        /// </summary>
-        /// <typeparam name="TTarget">The type of the target.</typeparam>
-        /// <param name="targets">The targets.</param>
-        /// <param name="specifications">The specifications.</param>
-        public static void Assert<TTarget>(IEnumerable<TTarget> targets, params ISpecification<TTarget>[] specifications)
-        {
-            var notSatisfiedSpecifications = SpecificationService.FilterSpecificationsAreNotSatisfiedBy(targets, specifications);
-            //return error Object
+            if (notSatisfiedSpecifications.Any())
+            {
+                throw new DomainSpecificationNotSatisfiedException<TTarget>(notSatisfiedSpecifications.First().NotSatisfiedReason,
+                    notSatisfiedSpecifications);
+            }
         }
 
         /// <summary>
@@ -92,7 +82,11 @@ namespace PGP.Infrastructure.Framework.Domain
         public static void AssertGroups<TTarget>(TTarget target, params object[] groupKeys)
         {
             var notSatisfiedSpecifications = SpecificationService.FilterSpecificationsAreNotSatisfiedBy(target, groupKeys);
-            //return error Object
+            if (notSatisfiedSpecifications.Any())
+            {
+                throw new DomainSpecificationNotSatisfiedException<TTarget>(notSatisfiedSpecifications.First().NotSatisfiedReason,
+                    notSatisfiedSpecifications);
+            }
         }
     }
 }

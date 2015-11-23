@@ -42,7 +42,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [TestMethod]
         public void RegisterRepository_Repository_Success()
         {
-            var mock = new Mock<IRepository<EntityBase>>();
+            var mock = new Mock<IRepository<PGPEntity>>();
             m_target.RegisterRepository(mock.Object);
         }
 
@@ -53,7 +53,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [ExpectedException(typeof(ArgumentNullException))]
         public void RegisterRepository_Null_ArgumentNullException()
         {
-            m_target.RegisterRepository<EntityBase>(null);
+            m_target.RegisterRepository<PGPEntity>(null);
             Assert.Fail();
         }
 
@@ -63,7 +63,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [TestMethod]
         public void RegisterNew_EntityBase_Success()
         {
-            m_target.RegisterNew(new EntityBase());
+            m_target.RegisterNew(new PGPEntity());
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [ExpectedException(typeof(ArgumentNullException))]
         public void RegisterNew_Null_ArgumentNullException()
         {
-            m_target.RegisterNew<EntityBase>(null);
+            m_target.RegisterNew<PGPEntity>(null);
             Assert.Fail();
         }
 
@@ -83,7 +83,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [TestMethod]
         public void Attach_EntityBase_Success()
         {
-            m_target.Attach(new EntityBase());
+            m_target.Attach(new PGPEntity());
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [ExpectedException(typeof(ArgumentNullException))]
         public void Attach_Null_ArgumentNullException()
         {
-            m_target.Attach<EntityBase>(null);
+            m_target.Attach<PGPEntity>(null);
             Assert.Fail();
         }
 
@@ -103,7 +103,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [TestMethod]
         public void RegisterDeleted_EntityBase_Success()
         {
-            var entity = new EntityBase();
+            var entity = new PGPEntity();
             m_target.Attach(entity);
             m_target.RegisterDeleted(entity);
         }
@@ -115,7 +115,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [ExpectedException(typeof(ArgumentNullException))]
         public void RegisterDeleted_Null_ArgumentNullException()
         {
-            m_target.RegisterDeleted<EntityBase>(null);
+            m_target.RegisterDeleted<PGPEntity>(null);
             Assert.Fail();
         }
 
@@ -125,7 +125,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [TestMethod]
         public void RegisterChanged_EntityBase_Success()
         {
-            var entity = new EntityBase();
+            var entity = new PGPEntity();
             m_target.Attach(entity);
             entity.Id = 5;
             m_target.RegisterChanged(entity);
@@ -138,7 +138,7 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [ExpectedException(typeof(ArgumentNullException))]
         public void RegisterChanged_Null_ArgumentNullException()
         {
-            m_target.RegisterChanged<EntityBase>(null);
+            m_target.RegisterChanged<PGPEntity>(null);
             Assert.Fail();
         }
 
@@ -148,14 +148,14 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [TestMethod]
         public void CreateQuery_Default_Entities()
         {
-            var initialList = m_target.CreateQuery<EntityBase>().ToList();
+            var initialList = m_target.CreateQuery<PGPEntity>().ToList();
 
-            var entityToAdd = new EntityBase();
+            var entityToAdd = new PGPEntity();
             m_target.RegisterNew(entityToAdd);
             m_target.SaveContextChanges();
 
 
-            var finalList = m_target.CreateQuery<EntityBase>().ToList();
+            var finalList = m_target.CreateQuery<PGPEntity>().ToList();
 
             Assert.AreEqual(initialList.Count + 1, finalList.Count);
             Assert.IsTrue(finalList.Any(x => x.Id == entityToAdd.Id));
@@ -167,14 +167,14 @@ namespace PGP.Infrastructure.Framework.Tests.DomainContext
         [TestMethod]
         public void CreateQuery_UnexistingQuery_None()
         {
-            var initialList = m_target.CreateQuery<EntityBase>().ToList();
+            var initialList = m_target.CreateQuery<PGPEntity>().ToList();
 
-            var entityToAdd = new EntityBase();
+            var entityToAdd = new PGPEntity();
             m_target.RegisterNew(entityToAdd);
             m_target.SaveContextChanges();
 
 
-            var finalList = m_target.CreateQuery<EntityBase>()
+            var finalList = m_target.CreateQuery<PGPEntity>()
                 .Where(x => x.Id == -1).ToList();
 
             Assert.AreEqual(initialList.Count, finalList.Count);

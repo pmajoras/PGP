@@ -9,7 +9,7 @@ namespace PGP.Infrastructure.Framework.Repositories
     /// <summary>
     /// The Entity Base Class
     /// </summary>
-    public class EntityBase : IEntity
+    public class PGPEntity : IEntity
     {
         /// <summary>
         /// Gets or sets the identifier.
