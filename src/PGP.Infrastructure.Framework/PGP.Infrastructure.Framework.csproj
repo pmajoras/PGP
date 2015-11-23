@@ -62,16 +62,6 @@
     <Compile Include="Constants\RegexConstants.cs" />
     <Compile Include="DomainContext\IDomainContext.cs" />
     <Compile Include="DomainContext\MemoryDomainContext.cs" />
-    <Compile Include="Domain\DomainEntityBase.cs" />
-    <Compile Include="Domain\DomainServiceBase.cs" />
-    <Compile Include="Domain\DomainServiceExtensions.cs" />
-    <Compile Include="Domain\IDomainRepository.cs" />
-    <Compile Include="Domain\IDomainService.cs" />
-    <Compile Include="Domain\IEntity.cs" />
-    <Compile Include="Domain\INamedEntity.cs" />
-    <Compile Include="Domain\Money.cs" />
-    <Compile Include="Domain\MoneyExtensions.cs" />
-    <Compile Include="Domain\NamedEntityEqualityComparer.cs" />
     <Compile Include="Domain\SpecService.cs" />
     <Compile Include="Enumerators\EnumExtensions.cs" />
     <Compile Include="Globalization\CultureInfoHelper.cs" />
@@ -83,6 +73,8 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\PGPDomainService.cs" />
+    <Compile Include="Repositories\PGPUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

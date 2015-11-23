@@ -46,6 +46,7 @@ namespace PGP.Infrastructure.Framework.Commons.Specs
         /// <returns><c>true</c> if this instance is satisfied by the specified target; otherwise, <c>false</c>.</returns>
         public override bool IsSatisfiedBy(TTarget target)
         {
+
             return true;
         }
 

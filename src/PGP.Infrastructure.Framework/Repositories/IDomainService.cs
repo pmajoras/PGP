@@ -28,7 +28,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// <param name="filter">The filter.</param>
         /// <param name="order">The order.</param>
         /// <returns></returns>
-        IEnumerable<TEntity> FindAll(int offset, int limit, Expression<Func<TEntity, bool>> filter, Func<IEnumerable<TEntity>, IEnumerable<TEntity>> order);
+        IEnumerable<TEntity> FindAll(int offset, int limit, Expression<Func<TEntity, bool>> filter, Expression<Func<IEnumerable<TEntity>, IEnumerable<TEntity>>> order);
 
         /// <summary>
         /// Counts this instance.
@@ -55,6 +55,12 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <param name="entities">The entities.</param>
         void SaveEntities(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// Removes the entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        void RemoveEntity(object id);
 
         /// <summary>
         /// Commits the changes to the database.

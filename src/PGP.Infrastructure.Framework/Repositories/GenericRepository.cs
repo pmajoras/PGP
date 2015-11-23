@@ -64,7 +64,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void BeforeDeleteItem(TEntity entity)
+        public virtual void BeforeDeleteItem(TEntity entity)
         {
         }
 
@@ -73,7 +73,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void BeforePersistNewItem(TEntity entity)
+        public virtual void BeforePersistNewItem(TEntity entity)
         {
         }
 
@@ -82,7 +82,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void BeforePersistUpdatedItem(TEntity entity)
+        public virtual void BeforePersistUpdatedItem(TEntity entity)
         {
         }
 
@@ -167,7 +167,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// Sets the repository context.
         /// </summary>
         /// <param name="context">The repository context.</param>
-        public void SetContext(IDomainContext context)
+        public virtual void SetContext(IDomainContext context)
         {
             m_domainContext = context;
         }

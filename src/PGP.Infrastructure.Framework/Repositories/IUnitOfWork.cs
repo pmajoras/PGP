@@ -9,10 +9,14 @@ namespace PGP.Infrastructure.Framework.Repositories
     public interface IUnitOfWork : IDisposable
     {
         /// <summary>
-        /// Save the changes of this <see cref="IUnitOfWork"/> instance to the database
-        /// This method is supposed to rollback the changes from the database in case of an error
+        /// Open and commit a transaction of this <see cref="IUnitOfWork"/> instance to the database
         /// </summary>
         void Commit();
+
+        /// <summary>
+        /// Rollbacks the openned transaction
+        /// </summary>
+        void Rollback();
 
         /// <summary>
         /// Discards the changes of this <see cref="IUnitOfWork"/> instance.
