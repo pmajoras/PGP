@@ -1,4 +1,5 @@
-﻿using KissSpecifications;
+﻿using HelperSharp;
+using KissSpecifications;
 using PGP.Infrastructure.Framework.Specifications;
 using PGP.Infrastructure.Framework.Specifications.Errors;
 using System;
@@ -18,20 +19,7 @@ namespace PGP.Infrastructure.Framework.Commons.DomainSpecifications
     {
         #region NotSatisfiedReasons
 
-        /// <summary>
-        /// The required not satisfied reason.
-        /// </summary>
-        public virtual DomainSpecificationError RequiredNotSatisfiedDefaultError { get; protected set; }
-
-        /// <summary>
-        /// The minimum length not satisfied reason.
-        /// </summary>
-        public virtual DomainSpecificationError MinLengthNotSatisfiedDefaultError { get; protected set; }
-
-        /// <summary>
-        /// The max length not satisfied reason.
-        /// </summary>
-        public virtual DomainSpecificationError MaxLengthNotSatisfiedDefaultError { get; protected set; }
+        protected Dictionary<Type, DomainSpecificationError> m_errorReasons = new Dictionary<Type, DomainSpecificationError>();
 
         #endregion
 
@@ -42,9 +30,29 @@ namespace PGP.Infrastructure.Framework.Commons.DomainSpecifications
         /// </summary>
         public MustComplyWithMetadataSpecificationBase()
         {
-            RequiredNotSatisfiedDefaultError = new DomainSpecificationError(0, "The {0} is required.", string.Empty);
-            MinLengthNotSatisfiedDefaultError = new DomainSpecificationError(1, "The {0} minimum length is {1}.", string.Empty);
-            MaxLengthNotSatisfiedDefaultError = new DomainSpecificationError(2, "The {0} max length is {1}.", string.Empty);
+            m_errorReasons.Add(typeof(RequiredAttribute), new DomainSpecificationError(0, "The {0} is required.", string.Empty));
+            m_errorReasons.Add(typeof(MinLengthAttribute), new DomainSpecificationError(1, "The {0} minimum length is {1}.", string.Empty));
+            m_errorReasons.Add(typeof(MaxLengthAttribute), new DomainSpecificationError(2, "The {0} max length is {1}.", string.Empty));
+        }
+
+        public MustComplyWithMetadataSpecificationBase(int requiredError, int minLengthError, int maxLengthError)
+        {
+            m_errorReasons.Add(typeof(RequiredAttribute), new DomainSpecificationError(requiredError, "The {0} is required.", string.Empty));
+            m_errorReasons.Add(typeof(MinLengthAttribute), new DomainSpecificationError(minLengthError, "The {0} minimum length is {1}.", string.Empty));
+            m_errorReasons.Add(typeof(MaxLengthAttribute), new DomainSpecificationError(maxLengthError, "The {0} max length is {1}.", string.Empty));
+        }
+
+        public MustComplyWithMetadataSpecificationBase(Dictionary<Type, DomainSpecificationError> customErrors)
+        {
+            ExceptionHelper.ThrowIfNull("customErrors", customErrors);
+
+            foreach (var error in customErrors)
+            {
+                if (!m_errorReasons.ContainsKey(error.Key))
+                {
+                    m_errorReasons.Add(error.Key, error.Value);
+                }
+            }
         }
 
         #endregion
@@ -93,27 +101,15 @@ namespace PGP.Infrastructure.Framework.Commons.DomainSpecifications
         /// <returns></returns>
         protected virtual DomainSpecificationError GetErrorFromInvalidAttribute(ValidationAttribute attribute, string fieldName)
         {
-            DomainSpecificationError returnError = null;
             string errorMessage = string.IsNullOrEmpty(attribute.ErrorMessage) ? null : attribute.ErrorMessage;
 
-            if (attribute is RequiredAttribute)
+            var returnError = new DomainSpecificationError(-1, errorMessage, fieldName);
+            DomainSpecificationError currentError = null;
+
+            if (m_errorReasons.TryGetValue(attribute.GetType(), out currentError))
             {
-                returnError = new DomainSpecificationError(RequiredNotSatisfiedDefaultError.ErrorCode,
-                    errorMessage ?? RequiredNotSatisfiedDefaultError.NotSatisfiedReason, fieldName);
-            }
-            else if (attribute is MinLengthAttribute)
-            {
-                returnError = new DomainSpecificationError(MinLengthNotSatisfiedDefaultError.ErrorCode,
-                    errorMessage ?? MinLengthNotSatisfiedDefaultError.NotSatisfiedReason, fieldName);
-            }
-            else if (attribute is MaxLengthAttribute)
-            {
-                returnError = new DomainSpecificationError(MaxLengthNotSatisfiedDefaultError.ErrorCode,
-                    errorMessage ?? MaxLengthNotSatisfiedDefaultError.NotSatisfiedReason, fieldName);
-            }
-            else
-            {
-                returnError = new DomainSpecificationError(-1, errorMessage, fieldName);
+                errorMessage = errorMessage ?? currentError.NotSatisfiedReason;
+                returnError = new DomainSpecificationError(currentError.ErrorCode, errorMessage, fieldName);
             }
 
             return returnError;

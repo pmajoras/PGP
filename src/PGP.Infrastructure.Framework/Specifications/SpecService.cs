@@ -16,43 +16,6 @@ namespace PGP.Infrastructure.Framework.Specifications
         /// </summary>
         static SpecService()
         {
-            KissSpecificationsConfig.GlobalizationResolver = new FuncGlobalizationResolver((text) =>
-            {
-                //switch (text)
-                //{
-                //    case MustNotHaveNullOrDefaultPropertySpecification<object>.NotSatisfiedReasonText:
-                //        return Texts.NullOrDefaultPropertySpecification;
-
-                //    case MustNotBeNullSpecification<object>.NotSatisfiedReasonText:
-                //        return Texts.MustNotBeNullSpecification;
-
-                //    case MustExistsSpecification<object, object>.NotSatisfiedReasonText:
-                //        return Texts.MustExistsSpecification;
-
-                //    case MustHaveUniqueTextSpecification<object>.NotSatisfiedReasonText:
-                //        return Texts.ThereIsOtherEntityWithSameName;
-
-                //    case MustComplyWithMetadataSpecification<object>.MinLengthNotSatisfiedReason:
-                //        return Texts.MinLengthNotSatisfiedReason;
-
-                //    case MustComplyWithMetadataSpecification<object>.MaxLengthNotSatisfiedReason:
-                //        return Texts.MaxLengthNotSatisfiedReason;
-
-                //    case MustComplyWithMetadataSpecification<object>.RequiredNotSatisfiedReason:
-                //        return Texts.RequiredNotSatisfiedReason;
-
-                //    case MustComplyWithMetadataSpecification<object>.UrlNotSatisfiedReason:
-                //        return Texts.UrlNotSatisfiedReason;
-
-                //    case MustHaveUniqueValueSpec<object, object>.NotSatisfiedReasonText:
-                //        return Texts.ThereIsOtherEntityWithSameValue;
-
-                //    default:
-                //        return GlobalizationHelper.
-                //}
-
-                return text;
-            });
         }
         #endregion
 
