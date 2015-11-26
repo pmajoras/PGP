@@ -48,7 +48,7 @@ namespace PGP.Infrastructure.Framework.Specifications
         /// <returns></returns>
         public virtual bool IsSatisfiedBy(TTarget target)
         {
-            return SpecificationResult.HasError;
+            return !SpecificationResult.HasError;
         }
 
         #endregion

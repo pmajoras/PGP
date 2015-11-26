@@ -82,7 +82,11 @@ namespace PGP.Infrastructure.Framework.Specifications.Results
         public void AddError(DomainSpecificationError error)
         {
             ExceptionHelper.ThrowIfNull("error", error);
-            m_errors.Add(error);
+
+            if (!m_errors.Contains(error))
+            {
+                m_errors.Add(error);
+            }
         }
 
         #endregion
