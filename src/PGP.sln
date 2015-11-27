@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastructure.Framewor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastructure.Framework.Tests", "PGP.Infrastructure.Framework.Tests\PGP.Infrastructure.Framework.Tests.csproj", "{BDED95B0-86B7-4E3E-AF3B-CB0E5CC2E8CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Infrastructure.Framework.WebApi", "PGP.Infrastructure.Framework.WebApi\PGP.Infrastructure.Framework.WebApi.csproj", "{2050C8C3-181E-4FD5-8A1F-DDA2DBD7C051}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{BDED95B0-86B7-4E3E-AF3B-CB0E5CC2E8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDED95B0-86B7-4E3E-AF3B-CB0E5CC2E8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDED95B0-86B7-4E3E-AF3B-CB0E5CC2E8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2050C8C3-181E-4FD5-8A1F-DDA2DBD7C051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2050C8C3-181E-4FD5-8A1F-DDA2DBD7C051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2050C8C3-181E-4FD5-8A1F-DDA2DBD7C051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2050C8C3-181E-4FD5-8A1F-DDA2DBD7C051}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,6 @@ Global
 		{C4BBAFAD-0381-444C-84E2-4BDCC6CE3F1E} = {290CB9D3-CE05-48F2-BB12-310B4C1D31D3}
 		{51B654B6-C82C-4B60-8E8A-99148498402C} = {290CB9D3-CE05-48F2-BB12-310B4C1D31D3}
 		{BDED95B0-86B7-4E3E-AF3B-CB0E5CC2E8CF} = {290CB9D3-CE05-48F2-BB12-310B4C1D31D3}
+		{2050C8C3-181E-4FD5-8A1F-DDA2DBD7C051} = {290CB9D3-CE05-48F2-BB12-310B4C1D31D3}
 	EndGlobalSection
 EndGlobal
