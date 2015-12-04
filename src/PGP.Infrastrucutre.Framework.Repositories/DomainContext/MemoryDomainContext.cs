@@ -81,7 +81,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// <typeparam name="TRepository"></typeparam>
         /// <param name="repository"></param>
         /// <exception cref="System.ArgumentException">The MemoryDomainContext already contains an repository with the type  + repositoryType.Name + .</exception>
-        public void RegisterRepository<TRepository>(IRepository<TRepository> repository) where TRepository : IEntity
+        public void RegisterRepository<TRepository>(IRepository<TRepository> repository) where TRepository : class, IEntity
         {
             ExceptionHelper.ThrowIfNull("repository", repository);
 
@@ -102,7 +102,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public TEntity GetById<TEntity>(object id)
-            where TEntity : IEntity
+            where TEntity : class, IEntity
         {
             var intId = 0;
             if (id is int)
@@ -120,7 +120,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <returns></returns>
-        public IQueryable<TEntity> CreateQuery<TEntity>() where TEntity : IEntity
+        public IQueryable<TEntity> CreateQuery<TEntity>() where TEntity : class, IEntity
         {
             var query = GetSpecificListFromDictionary<TEntity>(m_memoryDatabase);
             var returnQuery = new List<TEntity>();
@@ -138,7 +138,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity.</param>
-        public void RegisterChanged<TEntity>(TEntity entity) where TEntity : IEntity
+        public void RegisterChanged<TEntity>(TEntity entity) where TEntity : class, IEntity
         {
             ExceptionHelper.ThrowIfNull("entity", entity);
             var listToRegister = GetSpecificListFromDictionary<TEntity>(m_memoryEntitiesToChange);
@@ -159,7 +159,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity to be deleted.</param>
-        public void RegisterDeleted<TEntity>(TEntity entity) where TEntity : IEntity
+        public void RegisterDeleted<TEntity>(TEntity entity) where TEntity : class, IEntity
         {
             ExceptionHelper.ThrowIfNull("entity", entity);
             var listToRegister = GetSpecificListFromDictionary<TEntity>(m_memoryEntitiesToRemove);
@@ -175,7 +175,7 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity to be registered.</param>
-        public void RegisterNew<TEntity>(TEntity entity) where TEntity : IEntity
+        public void RegisterNew<TEntity>(TEntity entity) where TEntity : class, IEntity
         {
             ExceptionHelper.ThrowIfNull("entity", entity);
             var listToRegister = GetSpecificListFromDictionary<TEntity>(m_memoryEntitiesToAdd);
@@ -186,7 +186,7 @@ namespace PGP.Infrastructure.Framework.Repositories
             }
         }
 
-        public void Attach<TEntity>(TEntity entity) where TEntity : IEntity
+        public void Attach<TEntity>(TEntity entity) where TEntity : class, IEntity
         {
             ExceptionHelper.ThrowIfNull("entity", entity);
             var listToRegister = GetSpecificListFromDictionary<TEntity>(m_memoryAttachedEntities);

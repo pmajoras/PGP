@@ -12,7 +12,7 @@ namespace PGP.Infrastructure.Framework.Repositories
     /// 
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public abstract class PGPRepository<TEntity> : IRepository<TEntity> where TEntity : IEntity
+    public abstract class PGPRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
         #region Private Properties
 

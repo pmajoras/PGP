@@ -17,44 +17,44 @@ namespace PGP.Infrastructure.Framework.Repositories
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity to be registered.</param>
-        void RegisterRepository<TRepository>(IRepository<TRepository> repository) where TRepository : IEntity;
+        void RegisterRepository<TRepository>(IRepository<TRepository> repository) where TRepository : class, IEntity;
 
         /// <summary>
         /// Registers the entity as a new entity in the context.
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity to be registered.</param>
-        void RegisterNew<TEntity>(TEntity entity) where TEntity : IEntity;
+        void RegisterNew<TEntity>(TEntity entity) where TEntity : class, IEntity;
 
         /// <summary>
         /// Attach an entity to the context.
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity to be attached.</param>
-        void Attach<TEntity>(TEntity entity) where TEntity : IEntity;
+        void Attach<TEntity>(TEntity entity) where TEntity : class, IEntity;
 
         /// <summary>
         /// Registers entity as a deleted entity in the context.
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity to be deleted.</param>
-        void RegisterDeleted<TEntity>(TEntity entity) where TEntity : IEntity;
+        void RegisterDeleted<TEntity>(TEntity entity) where TEntity : class, IEntity;
 
         /// <summary>
         /// Registers the entity as a changed entity in the context.
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <param name="entity">The entity.</param>
-        void RegisterChanged<TEntity>(TEntity entity) where TEntity : IEntity;
+        void RegisterChanged<TEntity>(TEntity entity) where TEntity : class, IEntity;
 
         /// <summary>
         /// Creates a query to be filtered.
         /// </summary>
         /// <typeparam name="TEntity">Type of the entity.</typeparam>
         /// <returns></returns>
-        IQueryable<TEntity> CreateQuery<TEntity>() where TEntity : IEntity;
+        IQueryable<TEntity> CreateQuery<TEntity>() where TEntity : class, IEntity;
 
-        TEntity GetById<TEntity>(object id) where TEntity : IEntity;
+        TEntity GetById<TEntity>(object id) where TEntity : class, IEntity;
 
         /// <summary>
         /// Begin a transaction
