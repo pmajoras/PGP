@@ -11,7 +11,7 @@ namespace PGP.Infrastructure.Framework.WebApi.HttpActionResults
     /// <summary>
     /// The HttpActionResult that can be used for general errors with content in the response.
     /// </summary>
-    public class ApiErrorResult<T> : IHttpActionResult
+    public class ApiResult<T> : IHttpActionResult
     {
         #region Protected Properties
 
@@ -26,12 +26,12 @@ namespace PGP.Infrastructure.Framework.WebApi.HttpActionResults
         protected MediaTypeFormatter m_formatter;
 
         /// <summary>
-        /// The error object that will be sent in the content of the response.
+        /// The object that will be sent in the content of the response.
         /// </summary>
-        protected T m_errorObject;
+        protected T m_contentObject;
 
         /// <summary>
-        /// The default HttpStatusCode, if null is passed as parameter will be used 400.
+        /// The default HttpStatusCode, if null is passed as parameter will be used 200.
         /// </summary>
         protected HttpStatusCode m_defaultStatusCode;
 
@@ -40,10 +40,10 @@ namespace PGP.Infrastructure.Framework.WebApi.HttpActionResults
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BadParametersResult{T}"/> class.
+        /// Initializes a new instance of the <see cref="ApiResult{T}"/> class.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <param name="errorObject">The error object.</param>
+        /// <param name="contentObject">The content object.</param>
         /// <param name="formatter">The formatter.</param>
         /// <param name="statusCode">The status code.</param>
         /// <exception cref="System.ArgumentNullException">
@@ -51,7 +51,7 @@ namespace PGP.Infrastructure.Framework.WebApi.HttpActionResults
         /// or
         /// errorObject
         /// </exception>
-        public ApiErrorResult(HttpRequestMessage request, T errorObject,
+        public ApiResult(HttpRequestMessage request, T contentObject,
             MediaTypeFormatter formatter = null, HttpStatusCode? statusCode = null)
         {
             if (request == null)
@@ -59,15 +59,15 @@ namespace PGP.Infrastructure.Framework.WebApi.HttpActionResults
                 throw new ArgumentNullException("request");
             }
 
-            if (errorObject == null)
+            if (contentObject == null)
             {
                 throw new ArgumentNullException("errorObject");
             }
 
             m_request = request;
-            m_errorObject = errorObject;
+            m_contentObject = contentObject;
 
-            m_defaultStatusCode = statusCode ?? HttpStatusCode.BadRequest;
+            m_defaultStatusCode = statusCode ?? HttpStatusCode.OK;
             m_formatter = formatter ?? new StandardJsonFormatter();
         }
 
@@ -80,7 +80,7 @@ namespace PGP.Infrastructure.Framework.WebApi.HttpActionResults
         /// <returns></returns>
         public Task<HttpResponseMessage> ExecuteAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var response = m_request.CreateResponse(m_defaultStatusCode, m_errorObject, m_formatter);
+            var response = m_request.CreateResponse(m_defaultStatusCode, m_contentObject, m_formatter);
             return Task.FromResult(response);
         }
     }

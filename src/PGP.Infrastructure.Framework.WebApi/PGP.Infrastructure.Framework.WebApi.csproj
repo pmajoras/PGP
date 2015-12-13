@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Formatters\StandardJsonFormatter.cs" />
-    <Compile Include="HttpActionResults\ApiErrorResult.cs" />
+    <Compile Include="HttpActionResults\ApiResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

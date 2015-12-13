@@ -172,24 +172,25 @@ namespace PGP.Infrastructure.Framework.Repositories.EF.EFContexts
         public virtual void SaveContextChanges()
         {
             var contextEntries = ChangeTracker.Entries().Where(x => x.State != EntityState.Detached && x.State != EntityState.Unchanged);
+            var repositories = m_registeredRepositories
+                .Where(x => x.Value.GetType().GetGenericArguments().Any())
+                .Select(x => x.Value).ToList();
 
-            foreach (var entry in contextEntries)
+            foreach (var repository in repositories)
             {
-                var entity = entry.Entity;
-
-                if (m_registeredRepositories.ContainsKey(entity.GetType()))
+                var entries = contextEntries.Where(x => x.Entity.GetType() == repository.GetType().GetGenericArguments()[0]);
+                foreach (var entry in entries)
                 {
-                    var repository = m_registeredRepositories.First(x => x.Key == entity.GetType()).Value;
                     switch (entry.State)
                     {
                         case EntityState.Added:
-                            repository.BeforePersistNewItem(entity as IEntity);
+                            repository.BeforePersistNewItem(entry.Entity as IEntity);
                             break;
                         case EntityState.Deleted:
-                            repository.BeforeDeleteItem(entity as IEntity);
+                            repository.BeforeDeleteItem(entry.Entity as IEntity);
                             break;
                         case EntityState.Modified:
-                            repository.BeforePersistUpdatedItem(entity as IEntity);
+                            repository.BeforePersistUpdatedItem(entry.Entity as IEntity);
                             break;
                         default:
                             break;

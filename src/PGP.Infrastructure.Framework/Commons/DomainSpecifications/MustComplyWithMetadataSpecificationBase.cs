@@ -30,16 +30,16 @@ namespace PGP.Infrastructure.Framework.Commons.DomainSpecifications
         /// </summary>
         public MustComplyWithMetadataSpecificationBase()
         {
-            m_errorReasons.Add(typeof(RequiredAttribute), new DomainSpecificationError(0, "The {0} is required.", string.Empty));
-            m_errorReasons.Add(typeof(MinLengthAttribute), new DomainSpecificationError(1, "The {0} minimum length is {1}.", string.Empty));
-            m_errorReasons.Add(typeof(MaxLengthAttribute), new DomainSpecificationError(2, "The {0} max length is {1}.", string.Empty));
+            m_errorReasons.Add(typeof(RequiredAttribute), new DomainSpecificationError(0, "The field is required", string.Empty));
+            m_errorReasons.Add(typeof(MinLengthAttribute), new DomainSpecificationError(1, "The field minimum length is", string.Empty));
+            m_errorReasons.Add(typeof(MaxLengthAttribute), new DomainSpecificationError(2, "The field max length is", string.Empty));
         }
 
-        public MustComplyWithMetadataSpecificationBase(int requiredError, int minLengthError, int maxLengthError)
+        public MustComplyWithMetadataSpecificationBase(int requiredErrorCode, int minLengthErrorCode, int maxLengthErrorCode)
         {
-            m_errorReasons.Add(typeof(RequiredAttribute), new DomainSpecificationError(requiredError, "The {0} is required.", string.Empty));
-            m_errorReasons.Add(typeof(MinLengthAttribute), new DomainSpecificationError(minLengthError, "The {0} minimum length is {1}.", string.Empty));
-            m_errorReasons.Add(typeof(MaxLengthAttribute), new DomainSpecificationError(maxLengthError, "The {0} max length is {1}.", string.Empty));
+            m_errorReasons.Add(typeof(RequiredAttribute), new DomainSpecificationError(requiredErrorCode, "The field is required.", string.Empty));
+            m_errorReasons.Add(typeof(MinLengthAttribute), new DomainSpecificationError(minLengthErrorCode, "The field minimum length is", string.Empty));
+            m_errorReasons.Add(typeof(MaxLengthAttribute), new DomainSpecificationError(maxLengthErrorCode, "The field max length is", string.Empty));
         }
 
         public MustComplyWithMetadataSpecificationBase(Dictionary<Type, DomainSpecificationError> customErrors)

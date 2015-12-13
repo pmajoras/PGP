@@ -65,9 +65,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Collections\IEnumerableExtensionsTest.cs" />
     <Compile Include="Commons\DomainSpecifications\MustComplyEntity.cs" />
     <Compile Include="Commons\DomainSpecifications\MustComplyWithMetadataSpecificationBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyHelpers\PropertyHelperTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Specifications\" />
